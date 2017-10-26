@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../css/css.css"/>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+<div id="main"></div>
+<input type="text" id="div1"/>
+<input type="text" id="div2">
+<input type="submit" id="div3">
+
+
+
+<script>
+    $('#div3').click(function(){
+       var value1= $('#div1').val();
+       var value2= $('#div2').val();
+        $.ajax({
+            url:"http://localhost:3000",
+            type:'POST',
+            data:{name:value1,con:value2},
+            success:function(e){
+                var app=''
+                for(var i in e){
+                    var num=e[i];
+                    for(var i in num){
+                        app='<p class="p1">'+num[i].name+'</p><p class="p2">'+num[i].con+'</p>'
+                    }
+                }
+             $('#main').append(app)
+            }
+        })
+    })
+</script>
+</body>
+</html>
